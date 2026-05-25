@@ -1,0 +1,57 @@
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{Cost Optimization and Operational Efficiency in the Cloud Through Serverless Architectures: A FinOps Perspective}
+
+\author{
+    \IEEEauthorblockN{Harold Caiza}
+    \IEEEauthorblockA{Carrera de Ingenieria en Sistemas de la Información\\
+    Universidad Internacional del Ecuador (UIDE)\\
+    Quito, Ecuador\\
+    Email: hacaizacr@uide.edu.ec}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The accelerated growth of cloud computing has transformed the technological infrastructure of organizations, but it has also introduced significant challenges in managing and controlling operational costs. This research paper analyzes how the adoption of event-driven (Serverless) architectures aligns with FinOps principles to maximize financial value in the cloud. Through a practical and comparative approach, we examine the benefits of on-demand computing versus traditional models based on constant server provisioning, demonstrating how resource optimization translates into a direct competitive advantage for remote development environments and startups.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Cloud Computing, Serverless, FinOps, Cost Optimization, AWS.
+\end{IEEEkeywords}
+
+\section{Introduction}
+In today's technological landscape, cloud computing has become the fundamental pillar for deploying software applications at a global scale \cite{aws_serverless}. The initial promise of the cloud was built upon elasticity and shifting capital expenditures (CapEx) toward operational expenditures (OpEx). However, in practice, the traditional Infrastructure as a Service (IaaS) model—grounded in provisioning continuous virtual instances (such as AWS EC2)—often generates a high percentage of underutilized resources (\textit{idle capacity}), resulting in unexpected and disproportionate increases in monthly organization billing.
+
+In response to this financial and operational problem, two key concepts in modern systems engineering emerge and converge: \textit{Serverless} architectures and the cultural methodology known as \textit{FinOps}. The serverless paradigm allows engineers to run applications and microservices without the need to permanently manage, patch, scale, or maintain underlying infrastructure. The cloud provider abstracts the operating system and charges strictly for the resources consumed during the actual request execution time.
+
+On the other hand, the discipline of \textit{FinOps} (Cloud Financial Operations) introduces a cultural and methodological shift focused on shared financial responsibility \cite{finops2023}. FinOps combines software development best practices, IT operations, and traditional finance to ensure that every dollar invested in cloud infrastructure maximizes business value.
+
+This research is justified by the current need of companies, particularly those operating with global engineering teams and remote work environments, to design software solutions that are not only scalable and fault-tolerant but also financially optimized from their architectural conception. The analysis presented herein provides a technical decision framework for transitioning toward on-demand computing models, evaluating the direct impact on operational cost reduction and development team efficiency.
+
+\section{Research Objectives}
+
+\subsection{General Objective}
+To evaluate the technical and financial impact of the convergence between \textit{Serverless} architectures and \textit{FinOps} methodology principles, through a quantitative cost simulation model, in order to propose a cloud resource optimization framework applicable to remote development environments and microservices architectures.
+
+\subsection{Specific Objectives}
+\begin{itemize}
+    \item \textbf{Analyze} the theoretical foundations, billing metrics, and scalability models of \textit{Serverless} services compared to traditional Infrastructure as a Service (IaaS) schemes.
+    \item \textbf{Structure} a formal mathematical model for calculating and projecting cloud operational costs based on real consumption variables (requests, allocated memory, and execution time).
+    \item \textbf{Develop} a practical comparative case study simulating different monthly traffic scenarios to determine the financial profitability threshold between using dedicated instances and on-demand functions in AWS.
+    \item \textbf{Define} a set of governance and cost-engineering best practices aligned with FinOps, tailored for autonomous developers and solutions architects managing cloud infrastructure remotely.
+\end{itemize}
+
+\section{Technological Foundations}
+The following sections will delve into the analytical breakdown of the services and the proposed methodology...
+
+\bibliographystyle{IEEEtran}
+\bibliography{referencias}
+
+\end{document}

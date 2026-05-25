@@ -1,0 +1,10 @@
+# Ignorar archivos temporales de LaTeX
+*.aux
+*.log
+*.toc
+*.synctex.gz
+*.bbl
+*.blg
+*.out
+*.fdb_latexmk
+*.fls
