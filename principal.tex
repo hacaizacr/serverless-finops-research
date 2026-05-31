@@ -7,11 +7,11 @@
 \title{Cost Optimization and Operational Efficiency in the Cloud Through Serverless Architectures: A FinOps Perspective}
 
 \author{
-    \IEEEauthorblockN{Harold Caiza}
-    \IEEEauthorblockA{Carrera de Ingenieria en Sistemas de la Información\\
+    \IEEEauthorblockN{Harold ...}
+    \IEEEauthorblockA{Facultad de Ingenierías y Ciencias Aplicadas\\
     Universidad Internacional del Ecuador (UIDE)\\
     Quito, Ecuador\\
-    Email: hacaizacr@uide.edu.ec}
+    Email: tu\_correo@uide.edu.ec}
 }
 
 \begin{document}
@@ -48,8 +48,40 @@ To evaluate the technical and financial impact of the convergence between \texti
     \item \textbf{Define} a set of governance and cost-engineering best practices aligned with FinOps, tailored for autonomous developers and solutions architects managing cloud infrastructure remotely.
 \end{itemize}
 
-\section{Technological Foundations}
-The following sections will delve into the analytical breakdown of the services and the proposed methodology...
+\section{Technological Foundations and State of the Art}
+
+\subsection{The Paradigm Shift: From IaaS to Function-as-a-Service (FaaS)}
+The evolution of cloud infrastructure has consistently moved towards higher levels of abstraction. Infrastructure as a Service (IaaS) requires engineering teams to manage virtual machines, operating system patches, network configurations, and scaling policies. This operational overhead often distracts distributed development teams from core business logic.
+
+Conversely, Serverless architecture—specifically implemented through Function-as-a-Service (FaaS)—abstracts the entire underlying infrastructure. Developers deploy isolated code snippets (functions) triggered by specific platform events. The cloud provider assumes full responsibility for system lifecycle, hardware provisioning, and high availability.
+
+\subsection{Under-the-Hood Mechanics: Micro-VMs and Low-Level Isolation}
+A common misconception in systems engineering is that serverless environments lack physical hardware execution boundaries. Modern FaaS platforms, such as AWS Lambda, leverage specialized lightweight virtualization technology to achieve secure multi-tenancy at scale. 
+
+AWS utilizes \textit{Firecracker}, an open-source minimalist Virtual Machine Monitor (VMM) built using Linux's Kernel-based Virtual Machine (KVM). Firecracker enables the creation of transient micro-Virtual Machines (micro-VMs) in milliseconds. These micro-VMs strip away non-essential drivers and legacy device emulations to minimize the memory footprint and optimize startup time. This low-level optimization allows thousands of isolated functions to execute concurrently on the same bare-metal host machine, adjusting resource utilization strictly dynamically.
+
+\subsection{The Operational Challenge: Cold Starts vs. Warm Starts}
+The transient nature of FaaS introduces a unique architectural variable known as the \textit{Cold Start}. When a function receives an execution trigger after a prolonged period of inactivity, the cloud provider must provision a new micro-VM container, load the runtime environment, and initialize the software binaries. This initialization phase injects latency into the request lifecycle. 
+
+Once the function completes its execution, the provider keeps the micro-VM context active or "warm" for a variable period (typically between 5 to 15 minutes) to process subsequent incoming events instantaneously, a state known as a \textit{Warm Start}. Managing this latency lifecycle through language runtime optimization (e.g., utilizing natively compiled Go binaries over heavier Java virtual machine stacks) is a critical technical requirement for high-performance serverless engineering.
+
+\subsection{The FinOps Framework and Shared Cost Responsibility}
+FinOps is an operational framework and cultural shift that brings financial accountability to the variable spend model of cloud computing. Unlike traditional procurement models where hardware budgets are fixed annually, the cloud requires real-time financial tracking. 
+
+The FinOps lifecycle consists of three continuous phases:
+\begin{enumerate}
+    \item \textbf{Inform:} Providing absolute visibility into cloud expenditures through granular resource tagging, cost allocation, and automated real-time budgeting dashboards.
+    \item \textbf{Optimize:} Identifying underutilized or idle resources. In FaaS environments, this involves rightsizing function memory allocation to avoid over-provisioning.
+    \item \textbf{Operate:} Continuous tracking of business unit metrics against cloud costs, creating automated governance policies to align engineering speed with economic efficiency.
+\end{enumerate}
+
+\subsection{State of the Art: Recent Insights in Cloud Cost Engineering}
+Recent academic literature and industry benchmarks emphasize that cloud waste in traditional IaaS environments averages between 30\% and 45\% due to over-provisioning predictively to handle peak traffic. Recent studies in cloud cost engineering highlight that moving microservices architectures from static containers to event-driven paradigms results in up to an 80\% reduction in compute costs for systems with highly fluctuating or sparse traffic patterns. 
+
+However, current research also notes that for workloads requiring persistent, predictable 24/7 high-throughput data processing, the FaaS pricing model can exponentially surpass the cost of a reserved IaaS instance. Thus, contemporary state-of-the-art literature aims to define the precise mathematical threshold where architectural shifts should occur, a gap this research addresses via quantitative simulation.
+
+\section{Cost Methodology and Mathematical Modeling}
+In the following section, we will define the quantitative simulation parameters...
 
 \bibliographystyle{IEEEtran}
 \bibliography{referencias}
