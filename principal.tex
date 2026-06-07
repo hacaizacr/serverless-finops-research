@@ -3,15 +3,16 @@
 \usepackage[english]{babel}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{amsmath}
 
 \title{Cost Optimization and Operational Efficiency in the Cloud Through Serverless Architectures: A FinOps Perspective}
 
 \author{
-    \IEEEauthorblockN{Harold ...}
+    \IEEEauthorblockN{Harold Steven Caiza Cruz}
     \IEEEauthorblockA{Facultad de Ingenierías y Ciencias Aplicadas\\
     Universidad Internacional del Ecuador (UIDE)\\
     Quito, Ecuador\\
-    Email: tu\_correo@uide.edu.ec}
+    Email: hacaizacr@uide.edu.ec}
 }
 
 \begin{document}
@@ -80,8 +81,51 @@ Recent academic literature and industry benchmarks emphasize that cloud waste in
 
 However, current research also notes that for workloads requiring persistent, predictable 24/7 high-throughput data processing, the FaaS pricing model can exponentially surpass the cost of a reserved IaaS instance. Thus, contemporary state-of-the-art literature aims to define the precise mathematical threshold where architectural shifts should occur, a gap this research addresses via quantitative simulation.
 
-\section{Cost Methodology and Mathematical Modeling}
-In the following section, we will define the quantitative simulation parameters...
+\section{Research Methodology}
+
+\subsection{Methodological Approach and Research Design}
+This study adopts a quantitative, empirical, and experimental research design. The methodology focuses on constructing an analytical financial simulation model to compare the economic and operational behavior of equivalent cloud architectures. Instead of relying on qualitative surveys, this research leverages raw infrastructure metrics and formal billing algorithms provided by major cloud service providers (CSPs), specifically Amazon Web Services (AWS), to map out structural cost behaviors under varying operational workloads.
+
+\subsection{Variables and Data Collection Parameters}
+To evaluate the financial threshold between Infrastructure as a Service (IaaS) and Function as a Service (FaaS), the simulation defines two primary categories of variables:
+
+\begin{itemize}
+    \item \textbf{Independent Variables (Workload Profiles):} Total monthly requests ($R$), request arrival frequency distribution (sparse vs. high-concurrency peaks), and mean execution duration per request ($T$, measured in milliseconds).
+    \item \textbf{Dependent Variables (Financial Output):} Total monthly compute expenditure ($C_{total}$), infrastructure cost efficiency ratio, and resource utilization percentages.
+\end{itemize}
+
+\subsection{Mathematical Cost Modeling}
+The foundational core of this methodology relies on the mathematical formalization of cloud billing structures. 
+
+For the traditional IaaS model (AWS EC2), the monthly cost function is linear and decoupled from incoming traffic, governed by the operational uptime of the virtual instance:
+\begin{equation}
+    C_{IaaS} = P_{instance} \times H \times N
+\end{equation}
+Where $P_{instance}$ represents the fixed price per hour of the selected instance family, $H$ is the total hours in a billing month (typically 730 hours), and $N$ represents the number of active instances in the auto-scaling group required to support peak capacity.
+
+Conversely, the billing model for FaaS (AWS Lambda) is purely transactional and multi-variable. It maps directly to actual runtime metrics and memory allocation. The total serverless compute cost is defined by the following expression:
+\begin{equation}
+    C_{FaaS} = (R \times P_{req}) + \left( R \times \left[ \frac{T}{1000} \right] \times \left[ \frac{M}{1024} \right] \times P_{compute} \right)
+\end{equation}
+Where:
+\begin{itemize}
+    \item $R$ is the total number of monthly invocations.
+    \item $P_{req}$ is the fixed unit price per million requests.
+    \item $T$ is the average execution time per request in milliseconds (rounded up to the nearest millisecond).
+    \item $M$ is the provisioned function memory size in Megabytes (MB).
+    \item $P_{compute}$ is the cost per Gigabyte-second (GB-s) allocated.
+\end{itemize}
+
+\subsection{Simulation Framework and Scenario Design}
+The methodology will be executed using a customized programmatic simulation script that models three distinct business traffic scenarios over a standard 30-day billing cycle:
+\begin{enumerate}
+    \item \textbf{Scenario A (Sparse/Highly Fluctuating Traffic):} Typical of early-stage startups and distributed remote development environments, characterized by high-concurrency bursts during working hours and long periods of total inactivity.
+    \item \textbf{Scenario B (Predictable/Linear Traffic):} Continuous data ingestion pipelines with minimal deviation from the baseline.
+    \item \textbf{Scenario C (Exponential Peak Traffic):} Extreme scaling events designed to test the financial safety threshold of auto-scaling latency versus immediate serverless provisioning.
+\end{enumerate}
+
+\section{Comparative Case Study and Simulations}
+In the next section, the numerical results gathered from the execution of these three simulation profiles will be analyzed...
 
 \bibliographystyle{IEEEtran}
 \bibliography{referencias}
